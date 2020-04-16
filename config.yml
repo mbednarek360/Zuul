@@ -1,0 +1,14 @@
+# rooms and their properties
+rooms:
+  0:
+    name: # string name
+    message: # string message
+    exits:
+      north: # id of room 
+      west: # id of room
+
+# command parsing
+commands:
+  help: help 
+  go: go
+  quit: quit
