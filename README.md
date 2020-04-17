@@ -1,5 +1,5 @@
 # **Zuul**
-Rust / Curses implementation of World of Zuul for CASci.
+Rust TUI implementation of World of Zuul for CASci.
 
 ---
 
