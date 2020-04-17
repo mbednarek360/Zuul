@@ -1,0 +1,16 @@
+# rooms and their properties
+rooms:
+
+  -
+    id: 0
+    name: Room1
+    message: The first one.
+    exits:
+      east: 1
+
+  -
+    id: 1
+    name: Room2
+    message: The second one.
+    exits:
+      west: 0
