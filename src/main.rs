@@ -6,7 +6,6 @@ fn main() {
     let rooms: Vec<core::room::Room> = core::room::get_rooms();
     let mut curstate: core::state::Game = core::state::init(&rooms[0]);
 
-
     // main game loop
     loop {
         let command: Option<String> = tui::update(&curstate);
