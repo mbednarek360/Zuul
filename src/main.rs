@@ -12,7 +12,6 @@ enum Event {
 }
 
 
-
 // init
 fn main() {
     let rooms: Vec<core::room::Room> = core::room::get_rooms();
