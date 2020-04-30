@@ -11,16 +11,13 @@ enum Event {
     Input(event::Key)
 }
 
-
 // init
 fn main() {
-    let rooms: Vec<core::room::Room> = core::room::get_rooms();
-    let mut curstate: core::state::Game = core::state::init(&rooms[0]);
+    let mut curstate: core::state::Game = core::state::init();
 
     // init user io
     let (tx, rx) = mpsc::channel();
     let input_tx = tx.clone();
-    let mut messages: Vec<String> = Vec::new();
     let mut buffer = String::new();
 
     // handle input thread
@@ -59,7 +56,7 @@ fn main() {
 
         // parse and run command
         if comm.is_some() {
-            core::eval::exec(comm.unwrap(), &mut curstate, &rooms);
+            core::eval::exec(comm.unwrap(), &mut curstate);
         }
     }
 }

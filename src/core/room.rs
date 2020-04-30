@@ -5,7 +5,7 @@ pub struct Room {
     id: u16,
     name: String,
     message: String,
-    exits: [Option<u16>; 4]
+    exits: [Option<usize>; 4]
 }
 
 // implementations for room struct
@@ -13,6 +13,10 @@ impl Room {
     pub fn to_string(&self) -> String {
         format!("{{id: {}, name: \"{}\", message: \"{}\", exits: {:?}}}", 
             self.id, self.name, self.message, self.exits)
+    }
+
+    pub fn get_exits(&self) -> [Option<usize>; 4] {
+        return self.exits;
     }
 }
 
@@ -32,10 +36,10 @@ pub fn get_rooms() -> Vec<Room> {
             name: room["name"].as_str().unwrap().to_string(),
             message: room["message"].as_str().unwrap().to_string(),
             exits: [
-                room["exits"]["north"].as_i64().map(|i| i as u16),
-                room["exits"]["south"].as_i64().map(|i| i as u16),
-                room["exits"]["east"].as_i64().map(|i| i as u16),
-                room["exits"]["west"].as_i64().map(|i| i as u16)
+                room["exits"]["north"].as_i64().map(|i| i as usize),
+                room["exits"]["south"].as_i64().map(|i| i as usize),
+                room["exits"]["east"].as_i64().map(|i| i as usize),
+                room["exits"]["west"].as_i64().map(|i| i as usize)
             ]
         })
     }

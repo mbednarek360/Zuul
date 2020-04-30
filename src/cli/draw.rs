@@ -35,7 +35,6 @@ pub fn draw_ui(curstate: &core::state::Game) -> Result<(), io::Error> {
         f.render_widget(block, chunks[1]);
     });
 
-
     // set cursor to input block
     terminal.show_cursor()?;
     terminal.set_cursor(1, terminal.size()?.height - 2)?;
