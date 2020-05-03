@@ -1,13 +1,19 @@
 use super::room;
 use std::io;
+use tui::widgets::Text;
 
-pub struct Game {
+// hold text buffer as static
+static BUF: Vec<Text> = Vec::new();
+
+// hold mutable game variables
+pub struct Game<'a> {
     rooms: Vec<room::Room>,
     room_id: usize,
-    buffer: String
+    buffer: &'a Vec<Text<'a>>
 }
 
-impl Game {
+// implementation for game
+impl Game<'_> {
 
     // goto north south east west exit
     //      0     1     2    3 
@@ -20,13 +26,18 @@ impl Game {
             None => Err(())
         }
     }
+
+    // return text buffer for ui access
+    pub fn get_buffer(&self) -> &Vec<Text> {
+        self.buffer
+    }
 }
 
 // setup new game
-pub fn init() -> Game {
+pub fn init() -> Game<'static> {
     Game {
         rooms: room::get_rooms(),
         room_id: 0,
-        buffer: String::new()
+        buffer: &BUF
     }
 } 
