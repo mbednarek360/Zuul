@@ -1,4 +1,5 @@
 use super::room;
+use super::item;
 use std::io;
 use tui::widgets::Text;
 
@@ -9,7 +10,8 @@ static BUF: Vec<Text> = Vec::new();
 pub struct Game<'a> {
     rooms: Vec<room::Room>,
     room_id: usize,
-    buffer: &'a Vec<Text<'a>>
+    buffer: &'a Vec<Text<'a>>,
+    items: Vec<item::Item>
 }
 
 // implementation for game
@@ -38,6 +40,7 @@ pub fn init() -> Game<'static> {
     Game {
         rooms: room::get_rooms(),
         room_id: 0,
-        buffer: &BUF
+        buffer: &BUF,
+        items: Vec::<item::Item>::new()
     }
 } 

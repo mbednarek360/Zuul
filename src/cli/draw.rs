@@ -34,8 +34,8 @@ pub fn draw_ui(curstate: &core::state::Game) -> Result<(), io::Error> {
         let chunks = Layout::default()
             .direction(Direction::Vertical)
             .constraints([
-                Constraint::Percentage(93),
-                Constraint::Percentage(7),
+                Constraint::Min(1),
+                Constraint::Length(3),
             ].as_ref()).split(split_rect(f.size(), 80, &mut xpos));
 
         // message buffer
@@ -55,7 +55,7 @@ pub fn draw_ui(curstate: &core::state::Game) -> Result<(), io::Error> {
     // set cursor to input block
     terminal.show_cursor()?;
     terminal.set_cursor((
-        terminal.size()?.width as f32 * 0.2) as u16 + 1,
+        terminal.size()?.width as f32 * 0.2 /*stats ratio*/ ) as u16 + 1,
         terminal.size()?.height - 2)?;
     Ok(())
 }
