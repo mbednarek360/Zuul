@@ -33,6 +33,11 @@ impl Game<'_> {
     pub fn get_buffer(&self) -> &Vec<Text> {
         self.buffer
     }
+
+    // return current room
+    pub fn get_room(&self) -> &room::Room {
+        &self.rooms[self.room_id]
+    }
 }
 
 // setup new game

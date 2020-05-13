@@ -8,6 +8,7 @@ pub fn exec(command: String, curstate: &mut state::Game) -> Result<(), ()> {
     match command_vec[0] {
         "exit" => process::exit(0),
         "goto" => goto(command_vec, curstate),
+        "redraw" => Ok(()),
         _ => Err(())
     }
 }

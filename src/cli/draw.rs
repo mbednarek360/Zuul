@@ -4,6 +4,7 @@ use tui::Terminal;
 use tui::backend::TermionBackend;
 use tui::widgets::{Widget, Block, Borders, Paragraph, Text};
 use tui::layout::{Layout, Constraint, Direction, self};
+use tui::style::{Color, Style, Modifier};
 use super::core;
 
 // draw layout with current state
@@ -71,4 +72,37 @@ fn split_rect(main: layout::Rect, percent: u16, xpos: &mut u16) -> layout::Rect 
 // prettify stats from gamestate
 fn format_stats(curstate: &core::state::Game, buffer: &mut Vec<Text>) {
 
+    // current room name
+    // player items
+
+    // print exit information
+    let mut exit_buf: Vec<Text> = Vec::new(); 
+    format_exits(&mut exit_buf, curstate.get_room().get_exits()); 
+    buffer.push(Text::styled("Exits: \n", Style::default().modifier(Modifier::BOLD)));
+    for exit in exit_buf {
+        buffer.push(exit);
+    }
+
+
+}
+
+// takes blank text buffer and will format according to available exits
+fn format_exits(buffer: &mut Vec<Text>, exits: [Option<usize>; 4]) {
+    let mut colors: Vec<Style> = Vec::new();
+
+    // get color for each exit
+    for exit in exits.iter() {
+        if exit.is_some() {
+            colors.push(Style::default().fg(Color::Green));
+        }
+        else {
+            colors.push(Style::default().fg(Color::Red));
+        }
+    }
+
+    // update exit buffer
+    buffer.push(Text::styled("N", colors[0]));
+    buffer.push(Text::styled("S", colors[1]));
+    buffer.push(Text::styled("E", colors[2]));
+    buffer.push(Text::styled("W", colors[3]));
 }

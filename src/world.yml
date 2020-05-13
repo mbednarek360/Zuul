@@ -6,11 +6,11 @@ rooms:
     name: Room1
     message: The first one.
     exits:
-      east: 1
+      west: 1
 
   -
     id: 1
     name: Room2
     message: The second one.
     exits:
-      west: 0
+      east: 0
