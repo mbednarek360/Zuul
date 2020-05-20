@@ -18,6 +18,10 @@ impl Room {
     pub fn get_exits(&self) -> [Option<usize>; 4] {
         return self.exits;
     }
+
+    pub fn get_name(&self) -> String {
+        self.name.clone()
+    }
 }
 
 // parses rooms from yaml

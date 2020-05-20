@@ -78,10 +78,16 @@ fn format_stats(curstate: &core::state::Game, buffer: &mut Vec<Text>) {
     // print exit information
     let mut exit_buf: Vec<Text> = Vec::new(); 
     format_exits(&mut exit_buf, curstate.get_room().get_exits()); 
-    buffer.push(Text::styled("Exits: \n", Style::default().modifier(Modifier::BOLD)));
+    buffer.push(Text::styled("\nExits: \n", Style::default().modifier(Modifier::BOLD)));
     for exit in exit_buf {
         buffer.push(exit);
     }
+
+    // current room name
+    buffer.push(Text::styled("\n\nRoom: \n", Style::default().modifier(Modifier::BOLD)));
+    buffer.push(Text::styled(curstate.get_room().get_name(), Style::default().fg(Color::Green)));
+
+    
 
 
 }
